@@ -12,6 +12,9 @@ database: false
 loadbefore: [
   StaffPlus # Log4j conflicts with older versions
 ]
+depend: [
+  BarleyTeaAPI
+]
 softdepend: [
   # Chat plugins
   Chatty, FancyChat, Herochat, Legendchat, LunaChat, nChat, TownyChat, VentureChat,

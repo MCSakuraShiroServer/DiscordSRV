@@ -108,10 +108,8 @@ public class AppendOnlyFileAccountLinkManager extends AbstractFileAccountLinkMan
             @SuppressWarnings("deprecation") JsonFileAccountLinkManager manager = new JsonFileAccountLinkManager();
             AtomicInteger count = new AtomicInteger();
             manager.linkedAccounts.forEach((discordId, uuid) -> {
-                if (!linkedAccounts.containsKey(discordId)) {
-                    linkedAccounts.put(discordId, uuid);
-                    count.getAndIncrement();
-                }
+                linkedAccounts.put(discordId, uuid);
+                count.getAndIncrement();
             });
             save();
 

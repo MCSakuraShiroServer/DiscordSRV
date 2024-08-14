@@ -107,6 +107,7 @@ tasks {
             exclude(dependency("github.scarsz:configuralize:.*"))
             exclude(dependency("me.scarsz.jdaappender:jda4:.*"))
             exclude(dependency("com.fasterxml.jackson.core:jackson-databind:.*"))
+            exclude("org.ricetea.utils.*")
         }
 
         relocate("net.dv8tion.jda", "github.scarsz.discordsrv.dependencies.jda")
