@@ -159,7 +159,7 @@ public class AppendOnlyFileAccountLinkManager extends AbstractFileAccountLinkMan
         try {
             try (FileWriter fileWriter = new FileWriter(tmpFile);
                  BufferedWriter writer = new BufferedWriter(fileWriter)) {
-                for (Map.Entry<String, UUID> entry : linkedAccounts.entrySet()) {
+                for (Map.Entry<String, UUID> entry : linkedAccounts.entries()) {
                     String discordId = entry.getKey();
                     UUID uuid = entry.getValue();
                     writer.write(discordId + " " + uuid + "\n");

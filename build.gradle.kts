@@ -15,10 +15,11 @@ plugins {
 
 group = "com.discordsrv"
 val minecraftVersion = project.properties["minecraftVersion"]!!.toString()
-val targetJavaVersion = 17
+val targetJavaVersion = 21
 
 java {
     val javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    toolchain.languageVersion.set(JavaLanguageVersion.of(targetJavaVersion))
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
 
@@ -84,6 +85,7 @@ tasks {
     }
 
     jar {
+
         finalizedBy("updateLicenses", "shadowJar")
         archiveFileName.set(project.name + "-" + archiveVersion.get() + "-original.jar")
 
@@ -222,7 +224,7 @@ dependencies {
     api("net.kyori:adventure-text-serializer-legacy:${adventureVersion}")
     api("net.kyori:adventure-text-serializer-plain:${adventureVersion}")
     api("net.kyori:adventure-text-serializer-gson:${adventureVersion}")
-    implementation("net.kyori:adventure-platform-bukkit:4.3.4-20240708.051538-1")
+    implementation("net.kyori:adventure-platform-bukkit:4.3.4")
     api("dev.vankka:mcdiscordreserializer:4.3.0")
 
     // Annotations
