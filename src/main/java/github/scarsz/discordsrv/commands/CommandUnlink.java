@@ -44,7 +44,7 @@ import static github.scarsz.discordsrv.commands.CommandLinked.*;
 
 public class CommandUnlink {
 
-    @Command(commandNames = {"unlink", "clearlinked"},
+    @Command(commandNames = { "unlink", "clearlinked" },
             helpMessage = "Unlinks your Minecraft account from your Discord account",
             permission = "discordsrv.unlink"
     )
@@ -83,11 +83,11 @@ public class CommandUnlink {
 
             if (target.length() == 32 || target.length() == 36 && args.length == 1) {
                 // target is UUID
-                notifyInterpret(sender, "UUID");
+                CommandLinked.notifyInterpret(sender, "UUID");
                 OfflinePlayer player = Bukkit.getOfflinePlayer(UUID.fromString(target));
-                notifyPlayer(sender, player);
+                CommandLinked.notifyPlayer(sender, player);
                 String discordId = DiscordSRV.getPlugin().getAccountLinkManager().getDiscordId(player.getUniqueId());
-                notifyDiscord(sender, discordId);
+                CommandLinked.notifyDiscord(sender, discordId);
                 if (discordId != null) {
                     DiscordSRV.getPlugin().getAccountLinkManager().unlink(discordId);
                     notifyUnlinked(sender);
@@ -122,9 +122,9 @@ public class CommandUnlink {
 
                     if (player != null) {
                         // found them
-                        notifyInterpret(sender, "Minecraft player");
-                        notifyPlayer(sender, player);
-                        notifyDiscord(sender, DiscordSRV.getPlugin().getAccountLinkManager().getDiscordId(player.getUniqueId()));
+                        CommandLinked.notifyInterpret(sender, "Minecraft player");
+                        CommandLinked.notifyPlayer(sender, player);
+                        CommandLinked.notifyDiscord(sender, DiscordSRV.getPlugin().getAccountLinkManager().getDiscordId(player.getUniqueId()));
 
                         DiscordSRV.getPlugin().getAccountLinkManager().unlink(player.getUniqueId());
                         notifyUnlinked(sender);
@@ -145,7 +145,7 @@ public class CommandUnlink {
                             .collect(Collectors.toSet());
 
                     if (matches.size() != 0) {
-                        notifyInterpret(sender, "Discord name");
+                        CommandLinked.notifyInterpret(sender, "Discord name");
 
                         if (matches.size() == 1) {
                             User user = matches.iterator().next();
@@ -157,7 +157,7 @@ public class CommandUnlink {
                                 DiscordSRV.getPlugin().getAccountLinkManager().unlink(user.getId());
                                 notifyUnlinked(sender);
                             } else {
-                                notifyPlayer(sender, null);
+                                CommandLinked.notifyPlayer(sender, null);
                             }
                         } else {
                             matches.stream().limit(5).forEach(user -> {
